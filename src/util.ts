@@ -181,6 +181,7 @@ export async function loadChannel(
             createOptions.userLimit = (channelData as VoiceChannelData).userLimit;
             createOptions.type = 'voice';
         }
+        channelData.name = channelData.name.includes("%") ? `${options.decos.first}${channelData.name.replace('%', options.decos.end)}` : channelData.name
         guild.channels.create(channelData.name, createOptions).then(async (channel) => {
             /* Update channel permissions */
             const finalPermissions: OverwriteData[] = [];
